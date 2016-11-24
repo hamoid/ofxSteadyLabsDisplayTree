@@ -60,3 +60,48 @@ For the more complex applications, you might want to do all your loading from a 
 We've been using this library for a long time now, and wanted to bring it to the community. If you have any question or suggestions please direct them to labs@steadyltd.com
 
 And have fun creating!
+
+##Note about this fork
+@hamoid forked this addon to make it work on QtCreator, OF 0.9.7 and Linux.
+All examples now run on my system. 
+
+* I replaced testApp by ofApp
+* Simplified main()
+* Replaced img->width with img->getWidth()
+* Replaced img->loadImage() with img->load()
+* Did minor fixes.
+
+To import the projects in QtCreator, go to ```New Project```, and use the assistant at 
+```openFrameworks -> Import an existing Application```.
+
+Then edit the .qbs file like follows:
+
+For ```jsonExample``` and ```getChildByNameExample```:
+
+        files: [
+            'src/main.cpp',
+            'src/ofApp.cpp',
+            'src/ofApp.h',
+            'src/JSONParser/JSONParser.cpp',
+            'src/JSONParser/JSONParser.h'
+        ]
+
+        of.addons: [
+            'ofxSteadyLabsDisplayTree',
+            'ofxJSON',
+        ]
+
+For ```emptySteadyLabsExample```, ```mouseEventsExample``` and ```mouseOcclusionExample```:
+
+        files: [
+            'src/main.cpp',
+            'src/ofApp.cpp',
+            'src/ofApp.h'
+        ]
+
+        of.addons: [
+            'ofxSteadyLabsDisplayTree',
+        ]
+
+You may need to reparse the qbs file, clean and run.
+
