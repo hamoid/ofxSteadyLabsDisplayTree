@@ -1,28 +1,28 @@
 /***********************************************************************
- 
+
  Copyright (c) 2011,2012, Mike Manh
  ***STEADY LTD http://steadyltd.com ***
  All rights reserved.
- 
- Redistribution and use in source and binary forms, with or without 
+
+ Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
- 
+
  *Redistributions of source code must retain the above copyright notice,
  this list of conditions and the following disclaimer.
- *Redistributions in binary form must reproduce the above copyright notice, 
- this list of conditions and the following disclaimer in the 
+ *Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the
  documentation and/or other materials provided with the distribution.
- 
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
- ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
- LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
- CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  **************************************************************************/
 
@@ -56,8 +56,8 @@ void BitmapSequence::loadDir(string inDir){
     dir.listDir( inDir );
     dir.sort();
     if( !dir.size() ){
-		cout << "BitmapSequence::loadDir::no files in:" << inDir << "\n";
-	}
+                cout << "BitmapSequence::loadDir::no files in:" << inDir << "\n";
+        }
     else{
         int numFiles = dir.size();
         for (int i = 0 ; i < numFiles; i++ ){
@@ -65,7 +65,7 @@ void BitmapSequence::loadDir(string inDir){
             ofImage* curImage = new ofImage();
             bool loaded = false;
             try {
-                 loaded = curImage->loadImage( curFile );
+                 loaded = curImage->load( curFile );
             } catch ( std::exception& e ) {
                 cout << "BitmapSequence::loadDir::Error trying to load image from:" << inDir<< "\n";
             }
@@ -102,14 +102,14 @@ void BitmapSequence::useTime(){
 
 void BitmapSequence::setDimensions(){
 
-    width = images[ curFrame ]->width;
-    height = images[ curFrame ]->height;
+    width = images[ curFrame ]->getWidth();
+    height = images[ curFrame ]->getHeight();
     //cout << "BitmapSequence::setDimensions::width:"<<width<<"\n";
-    
+
 }
 
 void BitmapSequence::gotoAndPlay(int frame){
-    //make sure they're asking for a frame in bounds    
+    //make sure they're asking for a frame in bounds
     if ( frame >= 0 && frame < totalFrames ){
         curFrame = frame;
     }
@@ -117,7 +117,7 @@ void BitmapSequence::gotoAndPlay(int frame){
 }
 
 void BitmapSequence::gotoAndStop(int frame){
-    
+
     //make sure they're asking for a frame in bounds
     if ( frame >= 0 && frame < totalFrames ){
         curFrame = frame;
@@ -171,7 +171,7 @@ void BitmapSequence::update(){
     else{
         //umm i dunno, use time?
     }
-    
+
     setDimensions();
 }
 
@@ -180,7 +180,7 @@ void BitmapSequence::render(){
     if( hasAlpha ){
         ofEnableAlphaBlending();
     }
-    
+
     images[ curFrame ]-> draw( 0, 0 );
 
 }

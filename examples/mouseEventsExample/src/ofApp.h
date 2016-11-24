@@ -1,13 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "JSONParser.h"
-
-#include "BaseSprite.h"
-#include "BitmapSprite.h"
+#include "DisplayObject.h"
 #include "ButtonSprite.h"
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
 
 public:
     void setup();
@@ -23,18 +20,16 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    
-    // ASSETS
-    BaseSprite* root;
-    BitmapSprite* stageImg;
-    
-    
-    // SETTINGS
-    bool isDebug;
-    
-    // JSON
-    JSONParser jsonParser;
-    
 
-		
+    //these are the event listener functions
+    void onButton1Pressed( ofMessage &e );
+    void onButton1RolledOver( ofMessage &e );
+
+    void onButton2Pressed( ofMessage &e );
+    void onButton2RolledOut( ofMessage &e );
+
+    DisplayObject* root;
+    ButtonSprite* button1;
+    ButtonSprite* button2;
+
 };

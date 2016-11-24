@@ -9,7 +9,7 @@
 #include "JSONParser.h"
 
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
 
 public:
     void setup();
@@ -25,21 +25,21 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    
+
     // ASSETS
     BaseSprite* root;
     BaseSprite* containerA;
-    
+
     BitmapSprite* stageImg;
     BitmapSprite *redAsset;
     BitmapSprite *blueAsset;
     BitmapSprite *greenAsset;
     BitmapSprite *yellowAsset;
-    
+
     // SETTINGS
     bool isDebug;
-    
+
     // JSON
     JSONParser jsonParser;
-		
+
 };
